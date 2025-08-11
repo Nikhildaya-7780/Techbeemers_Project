@@ -1,0 +1,1 @@
+BASE_URL = "https://techbeamers.com/selenium-practice-test-page/"
