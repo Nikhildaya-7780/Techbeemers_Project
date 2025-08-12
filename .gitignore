@@ -1,0 +1,46 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+env/
+*.egg-info/
+*.eggs/
+.env
+.env.*
+
+# PyCharm project files
+.idea/
+*.iml
+
+# Pytest cache and test artifacts
+.pytest_cache/
+.cache/
+*.log
+*.tmp
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Test result files
+junit-*.xml
+test-results/
+output/
+report/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Misc
+*.swp
+*.bak
+*.orig
