@@ -76,13 +76,9 @@ def test_browser_navigations(driver):
     login_process = LoginPage(driver)
     login_process.access_url()
     browser_nav = NewTab(driver)
-    time.sleep(5)
     browser_nav.default_window()
-    time.sleep(5)
     browser_nav.browser_back()
-    time.sleep(5)
     browser_nav.browser_forward()
-    time.sleep(5)
     browser_nav.browser_refresh()
     time.sleep(5)
 
