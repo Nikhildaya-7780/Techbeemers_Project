@@ -356,16 +356,36 @@ class BasePage(object):
     def switch_to_new_window(self):
         original = self.driver.current_window_handle
 
-        WebDriverWait(self.driver, 10).until(EC.number_of_windows_to_be(2))
+        print("Waiting for new window/tab to open...")
+        try:
+            WebDriverWait(self.driver, 20).until(EC.number_of_windows_to_be(2))
+        except TimeoutException:
+            print(f"Timeout waiting for new window. Current handles: {self.driver.window_handles}")
+            self._capture_screenshot("switch_to_new_window_timeout")
+            raise Exception("Timed out waiting for new window/tab to open.")
+
         handles = self.driver.window_handles
+        print(f"Window handles after wait: {handles}")
 
         for handle in handles:
             if handle != original:
                 self.driver.switch_to.window(handle)
+                print(f"Switched to new window: {handle}")
                 return original  # Return the original handle for later switch-back
 
-        # If no new window is found, raise an error
+        self._capture_screenshot("no_new_window_found")
         raise Exception("No new window handle found. Only one window is open.")
 
     def _capture_screenshot(self, param):
-        pass
+        import os
+        import datetime
+
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"screenshot_{param}_{timestamp}.png"
+        screenshots_dir = "screenshots"
+        if not os.path.exists(screenshots_dir):
+            os.makedirs(screenshots_dir)
+
+        filepath = os.path.join(screenshots_dir, filename)
+        self.driver.save_screenshot(filepath)
+        print(f"Screenshot saved: {filepath}")

@@ -13,6 +13,7 @@ import time
 from pages.alerts_and_popups import AlertsAndPopups
 from pages.load_content import LoadContentPage
 from pages.show_hide_elements import Show_Hide_Elements
+from pages.tabs_and_accordions import TabsAndAccordions
 
 
 @pytest.fixture(scope="session")
@@ -80,6 +81,13 @@ def test_browser_navigations(driver):
     browser_nav.browser_back()
     browser_nav.browser_forward()
     browser_nav.browser_refresh()
+    time.sleep(5)
+
+def test_tab(driver):
+    login_process = LoginPage(driver)
+    login_process.access_url()
+    tab_testing = TabsAndAccordions(driver)
+    tab_testing.select_tab()
     time.sleep(5)
 
 
